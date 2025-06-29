@@ -32,6 +32,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Plus,
 } from "lucide-react";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
@@ -39,22 +40,22 @@ const stats = [
   {
     label: "New",
     value: 10,
-    icon: <FileText style={{ color: "#a03c50" }} size={32} />,
+    icon: <FileText  size={32} />,
   },
   {
     label: "Draft",
     value: 4,
-    icon: <BarChart2 style={{ color: "#a03c50" }} size={32} />,
+    icon: <BarChart2  size={32} />,
   },
   {
     label: "Final",
     value: 6,
-    icon: <CheckCircle style={{ color: "#a03c50" }} size={32} />,
+    icon: <CheckCircle  size={32} />,
   },
   {
     label: "Published Article",
     value: 2,
-    icon: <Globe2 style={{ color: "#a03c50" }} size={32} />,
+    icon: <Globe2  size={32} />,
   },
 ];
 
@@ -75,19 +76,47 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       {/* Stats */}
-      <Box sx={{ p: 3 }}>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }, gap: 3 }}>
+      <Box sx={{ p: 2 }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }, gap: 6 }}>
           {stats.map((stat, i) => (
-            <Card key={i} sx={{ textAlign: "center", py: 3 }}>
-              <CardContent>
-                <Box sx={{ mb: 1 }}>{stat.icon}</Box>
-                <Typography variant="h3" sx={{ color: "#a03c50", fontWeight: "bold" }}>
+            <Card
+              key={i}
+              sx={{
+                boxShadow: 2,
+                borderRadius: 2,
+                background: "#faf7f8",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                minHeight: 80,
+                display: 'flex',
+                alignItems: 'center',
+                py: 2,
+                px: 3,
+                '&:hover': {
+                  transform: 'translateY(-4px) scale(1.03)',
+                  boxShadow: 4,
+                },
+              }}
+            >
+              <Box sx={{
+                bgcolor: '#f3dbe0',
+                borderRadius: '50%',
+                width: 36,
+                height: 36,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                mr: 2,
+              }}>
+                {React.cloneElement(stat.icon, { size: 22, style: { color: '#a03c50' } })}
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1 }}>
+                <Typography variant="h4" sx={{ color: "#a03c50", fontWeight: "bold", mb: 0.2, letterSpacing: 1 }}>
                   {stat.value}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500, letterSpacing: 0.5 }}>
                   {stat.label}
                 </Typography>
-              </CardContent>
+              </Box>
             </Card>
           ))}
         </Box>
@@ -102,7 +131,6 @@ export default function DashboardPage() {
           <Box sx={{ display: "flex", gap: 2, width: { xs: "100%", md: "auto" } }}>
             <TextField
               placeholder="Search recent accessed article..."
-              size="small"
               sx={{ maxWidth: 300 }}
             />
             <Button
@@ -116,8 +144,9 @@ export default function DashboardPage() {
                 fontWeight: "semibold",
                 textTransform: "none",
               }}
+              startIcon={<Plus size={20} />}
             >
-              + Add New
+              Add New
             </Button>
           </Box>
         </Box>
@@ -144,14 +173,14 @@ export default function DashboardPage() {
                   <TableCell>{a.date}</TableCell>
                   <TableCell>
                     <Box sx={{ display: "flex", gap: 1 }}>
-                      <IconButton size="small">
-                        <Eye size={16} style={{ color: "#a03c50" }} />
+                      <IconButton>
+                        <Eye size={16}/>
                       </IconButton>
-                      <IconButton size="small">
-                        <Trash2 size={16} style={{ color: "#a03c50" }} />
+                      <IconButton>
+                        <Trash2 size={16}/>
                       </IconButton>
-                      <IconButton size="small">
-                        <Edit size={16} style={{ color: "#a03c50" }} />
+                      <IconButton>
+                        <Edit size={16} />
                       </IconButton>
                     </Box>
                   </TableCell>
@@ -165,7 +194,7 @@ export default function DashboardPage() {
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: 2, p: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Typography variant="body2">Items per page:</Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
+            <FormControl sx={{ minWidth: 80 }}>
               <Select value={5} displayEmpty>
                 <MenuItem value={5}>5</MenuItem>
                 <MenuItem value={10}>10</MenuItem>
@@ -175,16 +204,16 @@ export default function DashboardPage() {
           </Box>
           <Typography variant="body2">1 - 10 of 20</Typography>
           <Box sx={{ display: "flex", gap: 0.5 }}>
-            <IconButton size="small">
+            <IconButton>
               <ChevronsLeft size={16} />
             </IconButton>
-            <IconButton size="small">
+            <IconButton>
               <ChevronLeft size={16} />
             </IconButton>
-            <IconButton size="small">
+            <IconButton>
               <ChevronRight size={16} />
             </IconButton>
-            <IconButton size="small">
+            <IconButton>
               <ChevronsRight size={16} />
             </IconButton>
           </Box>

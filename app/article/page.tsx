@@ -31,6 +31,10 @@ import {
   Filter,
   Download,
   Upload,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
 } from "lucide-react";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
@@ -96,7 +100,7 @@ export default function ArticlePage() {
       {/* Header Section */}
       <Box sx={{ p: 3, pb: 2 }}>
         <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: { md: "center" }, justifyContent: { md: "space-between" }, mb: 3, gap: 2 }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold", color: "#a03c50" }}>
+          <Typography variant="h5">
             Article Management
           </Typography>
           <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -133,7 +137,6 @@ export default function ArticlePage() {
           <Box sx={{ display: "flex", gap: 1, flex: 1 }}>
             <TextField
               placeholder="Search articles..."
-              size="small"
               sx={{ flex: 1 }}
               InputProps={{
                 startAdornment: <Search size={16} style={{ marginRight: 8, color: "#666" }} />,
@@ -147,7 +150,7 @@ export default function ArticlePage() {
               Filter
             </Button>
           </Box>
-          <FormControl size="small" sx={{ minWidth: 120 }}>
+          <FormControl sx={{ minWidth: 120 }}>
             <Select value="all" displayEmpty>
               <MenuItem value="all">All Status</MenuItem>
               <MenuItem value="draft">Draft</MenuItem>
@@ -214,13 +217,13 @@ export default function ArticlePage() {
                   </TableCell>
                   <TableCell>
                     <Box sx={{ display: "flex", gap: 1 }}>
-                      <IconButton size="small" title="View">
+                      <IconButton title="View">
                         <Eye size={16} style={{ color: "#a03c50" }} />
                       </IconButton>
-                      <IconButton size="small" title="Edit">
+                      <IconButton title="Edit">
                         <Edit size={16} style={{ color: "#a03c50" }} />
                       </IconButton>
-                      <IconButton size="small" title="Delete">
+                      <IconButton title="Delete">
                         <Trash2 size={16} style={{ color: "#a03c50" }} />
                       </IconButton>
                     </Box>
@@ -235,7 +238,7 @@ export default function ArticlePage() {
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: 2, p: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Typography variant="body2">Items per page:</Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
+            <FormControl sx={{ minWidth: 80 }}>
               <Select value={10} displayEmpty>
                 <MenuItem value={5}>5</MenuItem>
                 <MenuItem value={10}>10</MenuItem>
@@ -245,17 +248,17 @@ export default function ArticlePage() {
           </Box>
           <Typography variant="body2">1 - 5 of 5</Typography>
           <Box sx={{ display: "flex", gap: 0.5 }}>
-            <IconButton size="small" disabled>
-              <FileText size={16} />
+            <IconButton disabled>
+              <ChevronsLeft size={16} />
             </IconButton>
-            <IconButton size="small" disabled>
-              <FileText size={16} />
+            <IconButton disabled>
+              <ChevronLeft size={16} />
             </IconButton>
-            <IconButton size="small" disabled>
-              <FileText size={16} />
+            <IconButton disabled>
+              <ChevronRight size={16} />
             </IconButton>
-            <IconButton size="small" disabled>
-              <FileText size={16} />
+            <IconButton disabled>
+              <ChevronsRight size={16} />
             </IconButton>
           </Box>
         </Box>

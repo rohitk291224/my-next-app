@@ -18,7 +18,7 @@ export default function DashboardHeader() {
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-30 flex items-center justify-between gap-2 px-4 py-3 bg-[#f8eaea] border-b border-gray-200"
+      className="fixed top-0 left-0 w-full z-30 flex items-center justify-between gap-2 px-4 py-3 bg-[#f8eaea]"
       style={{ height: HEADER_HEIGHT }}
     >
       {/* Sidebar Toggle, Logo and Brand */}

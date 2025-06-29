@@ -1,6 +1,14 @@
 "use client";
 
-import { Home, FileText, BarChart2, File, Users, Settings, LogOut } from "lucide-react";
+import {
+  Home,
+  FileText,
+  BarChart2,
+  File,
+  Users,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "./SidebarContext";
 import Link from "next/link";
@@ -32,12 +40,15 @@ export default function Sidebar() {
       const isMobile = window.innerWidth < 768;
       const width = isOpen ? (isMobile ? 280 : 224) : 64;
       setSidebarWidth(width);
-      document.documentElement.style.setProperty('--sidebar-width', `${width}px`);
+      document.documentElement.style.setProperty(
+        "--sidebar-width",
+        `${width}px`
+      );
     };
 
     updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, [isOpen]);
 
   const handleItemClick = (item: any) => {
@@ -50,7 +61,7 @@ export default function Sidebar() {
     <>
       {/* Mobile overlay */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
           onClick={toggleSidebar}
         />
@@ -61,32 +72,46 @@ export default function Sidebar() {
         style={{
           top: HEADER_HEIGHT,
           left: 0,
-          height: `calc(100vh - ${HEADER_HEIGHT}px)` ,
+          height: `calc(100vh - ${HEADER_HEIGHT}px)`,
           width: isOpen ? 224 : 64,
           paddingLeft: isOpen ? 16 : 0,
           paddingRight: isOpen ? 16 : 0,
-          paddingTop: 24,
           paddingBottom: 24,
         }}
       >
         <nav
-          className={`flex flex-col gap-2 text-[#a03c50] mt-4 ${isOpen ? '' : 'items-center'}`}
+          className={`flex flex-col gap-2 text-[#a03c50] ${
+            isOpen ? "" : "items-center"
+          }`}
         >
           {navItems.map((item, idx) => {
-            const isActive = item.href ? pathname === item.href : idx === 0 && pathname === "/dashboard";
-            const buttonContent = <>
-              {item.icon}
-              {isOpen && <span>{item.label}</span>}
-            </>;
-            const buttonClass = `flex items-center ${isOpen ? 'gap-3 px-3 py-2 justify-start text-base' : 'justify-center p-0 w-12 h-12 rounded-full'} font-medium transition-colors ${
-              isActive ? "bg-[#a03c50] text-white" : "hover:bg-[#f3d6d6] text-[#a03c50]"
-            } ${!isOpen && idx === 0 ? '' : ''}`;
+            const isActive = item.href
+              ? pathname === item.href
+              : idx === 0 && pathname === "/dashboard";
+            const buttonContent = (
+              <>
+                {item.icon}
+                {isOpen && <span>{item.label}</span>}
+              </>
+            );
+            const buttonClass = `flex items-center ${
+              isOpen
+                ? "gap-3 px-3 py-2 justify-start text-sm rounded-sm"
+                : "justify-center p-0 w-12 h-12 rounded-md"
+            } font-medium transition-colors ${
+              isActive
+                ? "bg-[#a03c50] text-white"
+                : "hover:bg-[#f3d6d6] text-[#a03c50]"
+            }`;
             if (item.href) {
               return (
-                <Link href={item.href} key={item.label} passHref legacyBehavior>
-                  <a className={buttonClass} title={!isOpen ? item.label : undefined}>
-                    {buttonContent}
-                  </a>
+                <Link
+                  href={item.href}
+                  key={item.label}
+                  className={buttonClass}
+                  title={!isOpen ? item.label : undefined}
+                >
+                  {buttonContent}
                 </Link>
               );
             } else {
@@ -110,8 +135,8 @@ export default function Sidebar() {
         className={`md:hidden flex flex-col bg-[#f8eaea] border-r border-gray-200 transition-all duration-300 ease-in-out fixed z-50`}
         style={{
           top: HEADER_HEIGHT,
-          left: isOpen ? 0 : '-100%',
-          height: `calc(100vh - ${HEADER_HEIGHT}px)` ,
+          left: isOpen ? 0 : "-100%",
+          height: `calc(100vh - ${HEADER_HEIGHT}px)`,
           width: 280,
           paddingLeft: 16,
           paddingRight: 16,
@@ -119,24 +144,31 @@ export default function Sidebar() {
           paddingBottom: 24,
         }}
       >
-        <nav
-          className={`flex flex-col gap-2 text-[#a03c50] mt-4`}
-        >
+        <nav className={`flex flex-col gap-2 text-[#a03c50]`}>
           {navItems.map((item, idx) => {
-            const isActive = item.href ? pathname === item.href : idx === 0 && pathname === "/dashboard";
-            const buttonContent = <>
-              {item.icon}
-              <span>{item.label}</span>
-            </>;
-            const buttonClass = `flex items-center gap-3 px-3 py-2 justify-start text-base font-medium transition-colors ${
-              isActive ? "bg-[#a03c50] text-white" : "hover:bg-[#f3d6d6] text-[#a03c50]"
-            } ${idx === 0 ? 'mt-2' : ''}`;
+            const isActive = item.href
+              ? pathname === item.href
+              : idx === 0 && pathname === "/dashboard";
+            const buttonContent = (
+              <>
+                {item.icon}
+                <span>{item.label}</span>
+              </>
+            );
+            const buttonClass = `flex items-center gap-3 px-3 py-2 justify-start text-sm rounded-sm font-medium transition-colors ${
+              isActive
+                ? "bg-[#a03c50] text-white"
+                : "hover:bg-[#f3d6d6] text-[#a03c50]"
+            }`;
             if (item.href) {
               return (
-                <Link href={item.href} key={item.label} passHref legacyBehavior>
-                  <a className={buttonClass} title={item.label}>
-                    {buttonContent}
-                  </a>
+                <Link
+                  href={item.href}
+                  key={item.label}
+                  className={buttonClass}
+                  title={item.label}
+                >
+                  {buttonContent}
                 </Link>
               );
             } else {
@@ -157,4 +189,4 @@ export default function Sidebar() {
       </aside>
     </>
   );
-} 
+}

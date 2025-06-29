@@ -27,6 +27,8 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("theme-mode", theme);
+      // Apply theme class to html element
+      document.documentElement.className = theme === "dark" ? "dark" : "";
     }
   }, [theme]);
 
@@ -34,9 +36,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <html lang="en" className={theme === "dark" ? "dark" : ""}>
-        {children}
-      </html>
+      {children}
     </ThemeContext.Provider>
   );
 } 
